@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5100', // Adjust if necessary
+  //baseURL: 'http://localhost:5100', // Adjust if necessary
+  baseURL: 'https://backend.michaelvarnell.com:5100'
 });
 
 axiosInstance.interceptors.request.use(

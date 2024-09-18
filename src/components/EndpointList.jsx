@@ -37,7 +37,7 @@ function EndpointList() {
               <td className="px-4 py-2">{endpoint.http_method}</td>
               <td className="px-4 py-2 space-x-2">
                 {/* This is to show the URL for the user to use for the endpoint */}
-                "https://www.backend.michaelvarnell.com:8000/api/{endpoint.endpoint_name}"
+                "https://backend.michaelvarnell.com:5100/api/{endpoint.endpoint_name}"
 
               </td>
               <td className="px-4 py-2 space-x-2">
@@ -58,7 +58,7 @@ function EndpointList() {
           ))}
         </tbody>
       </table>
-      <div className="px-4 py-2 mb-4 mt-24 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
+      <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
         <Link to={'/dashboard'}> Back to Dashboard</Link>
       </div>
     </div>

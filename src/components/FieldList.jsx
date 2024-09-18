@@ -47,6 +47,9 @@ function FieldList() {
           ))}
         </tbody>
       </table>
+      <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
+        <Link to={'/dashboard'}> Back to Dashboard</Link>
+      </div>
     </div>
   );
 }

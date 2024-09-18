@@ -1,7 +1,7 @@
 // src/components/AddField.jsx
 import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 function AddField() {
   const { id } = useParams(); // Endpoint ID
@@ -99,8 +99,8 @@ function AddField() {
           Back to Main
         </button>
       </div>
-      <div className="mt-4">
-        <Link to={'/dashboard'}>Back to Dashboard</Link>
+      <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
+        <Link to={'/dashboard'}> Back to Dashboard</Link>
       </div>
     </div>
   );
