@@ -26,7 +26,7 @@ function EndpointList() {
         <thead>
           <tr>
             <th className="px-4 py-2">Endpoint Name</th>
-            <th className="px-4 py-2">HTTP Method</th>
+            <th className="px-4 py-2">HTTP Methods</th>
             <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
@@ -34,11 +34,8 @@ function EndpointList() {
           {endpoints.map((endpoint) => (
             <tr key={endpoint.endpoint_id}>
               <td className="px-4 py-2">{endpoint.endpoint_name}</td>
-              <td className="px-4 py-2">{endpoint.http_method}</td>
-              <td className="px-4 py-2 space-x-2">
-                {/* This is to show the URL for the user to use for the endpoint */}
-                "https://backend.michaelvarnell.com:5100/api/{endpoint.endpoint_name}"
-
+              <td className="px-4 py-2">
+                {endpoint.http_methods.join(', ')}
               </td>
               <td className="px-4 py-2 space-x-2">
                 <Link

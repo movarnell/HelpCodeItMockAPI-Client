@@ -5,21 +5,41 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function CreateEndpoint() {
   const [endpointName, setEndpointName] = useState('');
-  const [httpMethod, setHttpMethod] = useState('GET');
+  const [httpMethods, setHttpMethods] = useState({
+    GET: true,
+    POST: true,
+    PUT: true,
+    DELETE: true,
+  });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const selectedMethods = Object.keys(httpMethods).filter(
+        (method) => httpMethods[method]
+      );
+      console.log('Endpoint Name:', endpointName);
+      console.log('Selected Methods:', selectedMethods);
+
       await axiosInstance.post('/endpoints', {
         endpoint_name: endpointName,
-        http_method: httpMethod,
+        http_methods: selectedMethods,
       });
       navigate('/endpoints');
     } catch (err) {
-      setError(err.response.data.message || 'Failed to create endpoint');
+      console.error('Error Response:', err.response);
+      setError(err.response?.data?.message || 'Failed to create endpoint');
     }
+  };
+
+  const handleMethodChange = (e) => {
+    const { name, checked } = e.target;
+    setHttpMethods((prevMethods) => ({
+      ...prevMethods,
+      [name]: checked,
+    }));
   };
 
   return (
@@ -36,25 +56,41 @@ function CreateEndpoint() {
             onChange={(e) => setEndpointName(e.target.value)}
             required
           />
+          {!endpointName && (
+            <p className="text-red-500">Endpoint name is required.</p>
+          )}
         </div>
         <div>
-          <label className="block text-sm">HTTP Method</label>
-          <select
-            className="w-full px-4 py-2 border rounded-md"
-            value={httpMethod}
-            onChange={(e) => setHttpMethod(e.target.value)}
-          >
-            <option value="GET">GET</option>
-            <option value="POST">POST</option>
-            <option value="PUT">PUT</option>
-            <option value="DELETE">DELETE</option>
-          </select>
+          <label className="block text-sm">HTTP Methods</label>
+          <div className="flex space-x-4">
+            {['GET', 'POST', 'PUT', 'DELETE'].map((method) => (
+              <label key={method} className="flex items-center">
+                <input
+                  type="checkbox"
+                  name={method}
+                  checked={httpMethods[method]}
+                  onChange={handleMethodChange}
+                  className="mr-2"
+                />
+                {method}
+              </label>
+            ))}
+          </div>
+          {!Object.values(httpMethods).some(Boolean) && (
+            <p className="text-red-500">At least one HTTP method must be selected.</p>
+          )}
         </div>
-        <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600">
+        <button
+          type="submit"
+          disabled={!endpointName || !Object.values(httpMethods).some(Boolean)}
+          className={`px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600 ${
+            (!endpointName || !Object.values(httpMethods).some(Boolean)) && 'opacity-50 cursor-not-allowed'
+          }`}
+        >
           Create Endpoint
         </button>
       </form>
-      <div className="px-4 py-2 mb-4 mt-24 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
+      <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
         <Link to={'/dashboard'}> Back to Dashboard</Link>
       </div>
     </div>
