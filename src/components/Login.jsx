@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/Mock It.png';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -26,7 +27,8 @@ function Login() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 rounded">
       <div className="w-full max-w-md p-8 space-y-3 bg-white rounded shadow">
-        <h1 className="text-4xl font-bold text-center">Mock API</h1>
+        {/* <h1 className="text-4xl font-bold text-center">Mock API</h1> */}
+        <img src={logo} alt="logo" className="w-1/2 mx-auto" />
         <h1 className="text-2xl font-bold text-center">Login</h1>
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
