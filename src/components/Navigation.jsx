@@ -20,7 +20,7 @@ function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex items-center flex-shrink-0">
-              <Link to="/dashboard" className="text-2xl font-bold text-indigo-600">Help Code It - Mock API</Link>
+              <Link to="/dashboard" className="text-2xl font-bold text-indigo-600">Help Mock It </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
