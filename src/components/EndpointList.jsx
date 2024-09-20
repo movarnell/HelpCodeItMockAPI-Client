@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
+import { IoArrowBack } from 'react-icons/io5';
 
 function EndpointList() {
   const [endpoints, setEndpoints] = useState([]);
@@ -31,41 +32,49 @@ function EndpointList() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
-      <div className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <h1 className="mb-6 text-3xl font-bold text-gray-900">Your API Endpoints</h1>
-        <div className="mb-8 overflow-hidden bg-white shadow sm:rounded-lg">
+      <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex items-center mb-6">
+          <Link
+            to="/dashboard"
+            className="mr-4 text-indigo-600 transition-colors duration-200 hover:text-indigo-800"
+          >
+            <IoArrowBack className="w-6 h-6" />
+          </Link>
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Endpoint List</h1>
+        </div>
+        <div className="mb-8 overflow-x-auto bg-white shadow sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Endpoint Name</th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">URL</th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">HTTP Methods</th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase sm:px-6">Name</th>
+                <th className="px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase sm:px-6">URL</th>
+                <th className="px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase sm:px-6">Methods</th>
+                <th className="px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase sm:px-6">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {endpoints.map((endpoint) => (
                 <tr key={endpoint.endpoint_id}>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{endpoint.endpoint_name}</td>
-                  <td className="px-6 py-4 text-sm text-gray-500 break-all whitespace-nowrap">{`https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}`}</td>
-                  <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{endpoint.http_methods.join(', ')}</td>
-                  <td className="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                    <div className="flex space-x-2">
+                  <td className="px-3 py-4 text-sm font-medium text-gray-900 sm:px-6 whitespace-nowrap">{endpoint.endpoint_name}</td>
+                  <td className="px-3 py-4 text-sm text-gray-500 break-all sm:px-6">{`https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}`}</td>
+                  <td className="px-3 py-4 text-sm text-gray-500 sm:px-6 whitespace-nowrap">{endpoint.http_methods.join(', ')}</td>
+                  <td className="px-3 py-4 text-sm font-medium sm:px-6">
+                    <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
                       <Link
                         to={`/endpoints/${endpoint.endpoint_id}/fields`}
-                        className="px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="px-3 py-2 text-sm font-medium text-center text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >
                         Manage Fields
                       </Link>
                       <Link
                         to={`/api/${endpoint.endpoint_name}`}
-                        className="px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                       >
                         View Data
                       </Link>
                       <button
                         onClick={() => deleteEndpoint(endpoint.endpoint_id)}
-                        className="px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                        className="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                       >
                         Delete
                       </button>
@@ -82,11 +91,12 @@ function EndpointList() {
             {endpoints.map((endpoint) => (
               <div key={endpoint.endpoint_id} className="mb-8">
                 <h3 className="mb-2 font-medium text-gray-900 text-md">{endpoint.endpoint_name}</h3>
-                <p className="mb-2 text-sm text-gray-600">Base URL: <code className="p-1 bg-gray-100 rounded">https://backend.michaelvarnell.com:5100/api/{endpoint.endpoint_name}</code></p>
+                <p className="mb-2 text-sm text-gray-600">Base URL: <code className="p-1 break-all bg-gray-100 rounded">{`https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}`}</code></p>
                 {endpoint.http_methods.includes('GET') && (
                   <div className="mb-4">
                     <h4 className="text-sm font-medium text-gray-900">GET (Read data)</h4>
                     <pre className="p-2 overflow-x-auto text-sm bg-gray-100 rounded">
+                      <code className="break-words whitespace-pre-wrap">
 {`const fetchData = async () => {
   try {
     const response = await fetch('https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}');
@@ -101,6 +111,7 @@ function EndpointList() {
 };
 
 fetchData();`}
+                      </code>
                     </pre>
                   </div>
                 )}
@@ -108,6 +119,7 @@ fetchData();`}
                   <div className="mb-4">
                     <h4 className="text-sm font-medium text-gray-900">POST (Create new data)</h4>
                     <pre className="p-2 overflow-x-auto text-sm bg-gray-100 rounded">
+                      <code className="break-words whitespace-pre-wrap">
 {`const postData = async (newData) => {
   try {
     const response = await fetch('https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}', {
@@ -129,6 +141,7 @@ fetchData();`}
 
 const newData = { /* your data here */ };
 postData(newData);`}
+                      </code>
                     </pre>
                   </div>
                 )}
@@ -136,6 +149,7 @@ postData(newData);`}
                   <div className="mb-4">
                     <h4 className="text-sm font-medium text-gray-900">PUT (Update existing data)</h4>
                     <pre className="p-2 overflow-x-auto text-sm bg-gray-100 rounded">
+                      <code className="break-words whitespace-pre-wrap">
 {`const updateData = async (id, updatedData) => {
   try {
     const response = await fetch(\`https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}/\${id}\`, {
@@ -158,6 +172,7 @@ postData(newData);`}
 const id = '123'; // Replace with actual ID
 const updatedData = { /* your updated data here */ };
 updateData(id, updatedData);`}
+                      </code>
                     </pre>
                   </div>
                 )}
@@ -165,6 +180,7 @@ updateData(id, updatedData);`}
                   <div className="mb-4">
                     <h4 className="text-sm font-medium text-gray-900">DELETE (Remove data)</h4>
                     <pre className="p-2 overflow-x-auto text-sm bg-gray-100 rounded">
+                      <code className="break-words whitespace-pre-wrap">
 {`const deleteData = async (id) => {
   try {
     const response = await fetch(\`https://backend.michaelvarnell.com:5100/api/${endpoint.endpoint_name}/\${id}\`, {
@@ -182,6 +198,7 @@ updateData(id, updatedData);`}
 
 const id = '123'; // Replace with actual ID
 deleteData(id);`}
+                      </code>
                     </pre>
                   </div>
                 )}

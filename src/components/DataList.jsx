@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { useParams, Link } from 'react-router-dom';
-
+import { IoArrowBack } from 'react-icons/io5';
 function DataList() {
   const { endpointName } = useParams();
   const [dataList, setDataList] = useState([]);
@@ -47,7 +47,15 @@ function DataList() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold">Data for {endpointName}</h1>
+      <div className="flex items-center mb-6">
+        <Link
+              to="/dashboard"
+              className="mr-4 text-indigo-600 transition-colors duration-200 hover:text-indigo-800"
+            >
+              <IoArrowBack className="w-8 h-8" />
+            </Link>
+        <h1 className="text-3xl font-bold ">Data for the {endpointName} endpoint</h1>
+      </div>
       {error && <p className="text-red-500">{error}</p>}
       <Link
         to={`/api/${endpointName}/add`}
@@ -55,7 +63,7 @@ function DataList() {
       >
         Add Data
       </Link>
-      <table className="w-full mt-10 text-left table-auto border-collapse border border-gray-300">
+      <table className="w-full mt-10 text-left border border-collapse border-gray-300 table-auto">
         <thead>
           <tr className="bg-gray-200">
             {dataList.length > 0 &&
@@ -91,7 +99,7 @@ function DataList() {
           ))}
         </tbody>
       </table>
-      <div className="px-4 py-2 mb-4 mt-24 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
+      <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
         <Link to={'/dashboard'}> Back to Dashboard</Link>
       </div>
     </div>

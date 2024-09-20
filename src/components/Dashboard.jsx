@@ -1,12 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//import { IoArrowBack } from 'react-icons/io5';
 import Navigation from './Navigation';
 
 function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
-      <main className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex items-center mb-6">
+          {/* <Link
+            to="/"
+            className="mr-4 text-indigo-600 transition-colors duration-200 hover:text-indigo-800"
+          >
+            <IoArrowBack className="w-6 h-6" />
+          </Link> */}
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+        </div>
         <div className="px-4 py-6 sm:px-0">
           <div className="flex flex-col items-center justify-center space-y-6 border-4 border-gray-200 border-dashed rounded-lg h-96">
             <h2 className="mb-4 text-3xl font-semibold text-gray-800">Welcome to Your Dashboard</h2>
@@ -26,7 +36,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
