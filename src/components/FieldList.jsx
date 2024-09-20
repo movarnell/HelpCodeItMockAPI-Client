@@ -1,7 +1,7 @@
-// src/components/FieldList.jsx
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { useParams, Link } from 'react-router-dom';
+import Navigation from './Navigation';
 
 function FieldList() {
   const { id } = useParams(); // Endpoint ID
@@ -21,34 +21,43 @@ function FieldList() {
   }, [id]);
 
   return (
-    <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold">Manage Fields</h1>
-      <Link
-        to={`/endpoints/${id}/fields/add`}
-        className="px-4 py-2 mb-4 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600"
-      >
-        Add Field
-      </Link>
-      <table className="w-full text-left table-auto">
-        <thead>
-          <tr>
-            <th className="px-4 py-2">Field Name</th>
-            <th className="px-4 py-2">Data Type</th>
-            <th className="px-4 py-2">Is Required</th>
-          </tr>
-        </thead>
-        <tbody>
-          {fields.map((field) => (
-            <tr key={field.field_id}>
-              <td className="px-4 py-2">{field.field_name}</td>
-              <td className="px-4 py-2">{field.data_type}</td>
-              <td className="px-4 py-2">{field.is_required ? 'Yes' : 'No'}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
-        <Link to={'/dashboard'}> Back to Dashboard</Link>
+    <div className="min-h-screen bg-gray-100">
+      <Navigation />
+      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">Manage Fields</h1>
+        <div className="mb-6">
+          <Link
+            to={`/endpoints/${id}/fields/add`}
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Add Field
+          </Link>
+        </div>
+        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Field Name</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Type</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Required</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {fields.map((field) => (
+                <tr key={field.field_id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{field.field_name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{field.data_type}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{field.is_required ? 'Yes' : 'No'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="mt-8">
+          <Link to="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            Back to Dashboard
+          </Link>
+        </div>
       </div>
     </div>
   );
