@@ -16,7 +16,7 @@ function Login() {
         username,
         password,
       });
-      localStorage.setItem('token', response.data.token); 
+      localStorage.setItem('token', response.data.token);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response.data.message || 'Login failed');
@@ -24,8 +24,9 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen rounded bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-3 bg-white rounded shadow">
+        <h1 className="text-4xl font-bold text-center">Mock API</h1>
         <h1 className="text-2xl font-bold text-center">Login</h1>
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -49,6 +50,7 @@ function Login() {
               required
             />
           </div>
+
           <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600">
             Login
           </button>
@@ -57,6 +59,8 @@ function Login() {
             <a href="/register" className="text-blue-500 hover:underline">
               Register
             </a>
+            <br />
+            This app is currently free to use.
           </p>
         </form>
       </div>
