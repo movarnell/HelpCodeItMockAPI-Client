@@ -16,6 +16,16 @@ function Dashboard() {
             <IoArrowBack className="w-6 h-6" />
           </Link> */}
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <div className="mx-auto space-x-4">
+              <h3 className="text-2xl font-semibold text-gray-800 ms-4">Latest Updates</h3>
+              <ul className="list-disc list-inside">
+                <li> New and improved UI</li>
+                <li>
+
+                  Added ability to add data using JSON input
+                </li>
+              </ul>
+            </div>
         </div>
         <div className="px-4 py-6 sm:px-0">
           <div className="flex flex-col items-center justify-center space-y-6 border-4 border-gray-200 border-dashed rounded-lg h-96">

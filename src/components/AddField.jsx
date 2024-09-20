@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import Navigation from './Navigation';
@@ -10,6 +10,7 @@ function AddField() {
   const [dataType, setDataType] = useState('VARCHAR');
   const [isRequired, setIsRequired] = useState(false);
   const [error, setError] = useState('');
+  const [fields, setFields] = useState([]); // Add state for fields
   const navigate = useNavigate();
 
   const dataTypes = [
@@ -21,6 +22,19 @@ function AddField() {
     'BOOLEAN',
     'FLOAT',
   ];
+
+  useEffect(() => {
+    // Fetch existing fields
+    const fetchFields = async () => {
+      try {
+        const response = await axiosInstance.get(`/endpoints/${id}/fields`);
+        setFields(response.data.fields);
+      } catch (err) {
+        setError('Failed to fetch fields');
+      }
+    };
+    fetchFields();
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +56,15 @@ function AddField() {
 
   const handleNavigate = (path) => {
     navigate(path);
+  };
+
+  const handleDelete = async (fieldId) => {
+    try {
+      await axiosInstance.delete(`/endpoints/${id}/fields/${fieldId}`);
+      setFields(fields.filter(field => field.id !== fieldId));
+    } catch (err) {
+      setError(err.response.data.message || 'Failed to delete field');
+    }
   };
 
   return (
@@ -119,6 +142,23 @@ function AddField() {
           <Link to="/dashboard" className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
             Back to Dashboard
           </Link>
+        </div>
+        // Display existing fields with delete option
+        <div className="mt-6">
+          <h2 className="text-2xl font-semibold">Existing Fields</h2>
+          <ul>
+            {fields.map(field => (
+              <li key={field.id} className="flex items-center justify-between mt-2">
+                <span>{field.field_name}</span>
+                <button
+                  onClick={() => handleDelete(field.id)}
+                  className="px-2 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700"
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

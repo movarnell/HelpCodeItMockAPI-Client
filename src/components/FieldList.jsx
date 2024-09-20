@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
 import { useParams, Link } from 'react-router-dom';
 import Navigation from './Navigation';
-import { IoArrowBack } from 'react-icons/io5';
+import { IoArrowBack } from 'react-icons/io5'; // Updated import to only include arrow back icon
 
 function FieldList() {
   const { id } = useParams(); // Endpoint ID
@@ -20,6 +20,16 @@ function FieldList() {
 
     fetchFields();
   }, [id]);
+
+  // Add delete handler
+  const deleteField = async (fieldId) => {
+    try {
+      await axiosInstance.delete(`/endpoints/${id}/fields/${fieldId}`);
+      setFields(fields.filter(field => field.field_id !== fieldId));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -49,6 +59,7 @@ function FieldList() {
                 <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Field Name</th>
                 <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Data Type</th>
                 <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Is Required</th>
+                <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Actions</th> {/* Added Actions column */}
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -57,6 +68,14 @@ function FieldList() {
                   <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{field.field_name}</td>
                   <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{field.data_type}</td>
                   <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{field.is_required ? 'Yes' : 'No'}</td>
+                  <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    <button
+                      onClick={() => deleteField(field.field_id)}
+                      className="px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
+                    >
+                      Delete
+                    </button>
+                  </td> {/* Converted to Delete button */}
                 </tr>
               ))}
             </tbody>

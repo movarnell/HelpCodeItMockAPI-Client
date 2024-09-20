@@ -12,10 +12,15 @@ function CreateEndpoint() {
     DELETE: true,
   });
   const [error, setError] = useState('');
+  const [showErrors, setShowErrors] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowErrors(true);
+    if (!endpointName || !Object.values(httpMethods).some(Boolean)) {
+      return;
+    }
     try {
       const selectedMethods = Object.keys(httpMethods).filter(
         (method) => httpMethods[method]
@@ -45,22 +50,22 @@ function CreateEndpoint() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
-      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Create New Endpoint</h1>
-        {error && <p className="text-red-600 mb-4">{error}</p>}
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <form onSubmit={handleSubmit} className="space-y-6 p-6">
+      <div className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <h1 className="mb-6 text-3xl font-bold text-gray-900">Create New Endpoint</h1>
+        {error && <p className="mb-4 text-red-600">{error}</p>}
+        <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+          <form onSubmit={handleSubmit} className="p-6 space-y-6">
             <div>
               <label htmlFor="endpointName" className="block text-sm font-medium text-gray-700">Endpoint Name</label>
               <input
                 type="text"
                 id="endpointName"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 value={endpointName}
                 onChange={(e) => setEndpointName(e.target.value)}
                 required
               />
-              {!endpointName && <p className="mt-2 text-sm text-red-600">Endpoint name is required.</p>}
+              {showErrors && !endpointName && <p className="mt-2 text-sm text-red-600">Endpoint name is required.</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">HTTP Methods</label>
@@ -73,9 +78,9 @@ function CreateEndpoint() {
                       type="checkbox"
                       checked={httpMethods[method]}
                       onChange={handleMethodChange}
-                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                     />
-                    <label htmlFor={`method-${method}`} className="ml-2 block text-sm text-gray-900">
+                    <label htmlFor={`method-${method}`} className="block ml-2 text-sm text-gray-900">
                       {method}
                     </label>
                   </div>
@@ -95,7 +100,7 @@ function CreateEndpoint() {
           </form>
         </div>
         <div className="mt-8">
-          <Link to="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+          <Link to="/dashboard" className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
             Back to Dashboard
           </Link>
         </div>

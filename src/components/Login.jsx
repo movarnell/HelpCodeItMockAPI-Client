@@ -1,7 +1,7 @@
 // src/components/Login.jsx
 import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -24,7 +24,7 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen rounded bg-gray-100">
+    <div className="flex items-center justify-center h-screen bg-gray-100 rounded">
       <div className="w-full max-w-md p-8 space-y-3 bg-white rounded shadow">
         <h1 className="text-4xl font-bold text-center">Mock API</h1>
         <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -56,11 +56,12 @@ function Login() {
           </button>
           <p className="text-sm text-center">
             Don't have an account?{' '}
-            <a href="/register" className="text-blue-500 hover:underline">
+            <Link to="/register" className="text-blue-500 hover:underline">
               Register
-            </a>
+            </Link>
             <br />
             This app is currently free to use.
+            <br />If you have any issues please let us know using our <a href="https://www.helpcodeit.com/contact" className="text-blue-500 hover:underline">contact form!</a>
           </p>
         </form>
       </div>
