@@ -39,6 +39,7 @@ function FieldList() {
           <Link
             to="/endpoints"
             className="mr-4 text-indigo-600 transition-colors duration-200 hover:text-indigo-800"
+            data-testid="back-arrow"
           >
             <IoArrowBack className="w-6 h-6" />
           </Link>

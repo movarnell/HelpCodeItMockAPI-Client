@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateEndpoint Component matches snapshot 1`] = `
+<div
+  className="min-h-screen bg-gray-100"
+>
+  <nav
+    className="bg-white shadow"
+  >
+    <div
+      className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"
+    >
+      <div
+        className="flex justify-between h-16"
+      >
+        <div
+          className="flex"
+        >
+          <div
+            className="flex items-center flex-shrink-0"
+          >
+            <a
+              className="text-2xl font-bold text-indigo-600"
+              href="/dashboard"
+              onClick={[Function]}
+            >
+              Help Mock It 
+            </a>
+          </div>
+          <div
+            className="hidden sm:ml-6 sm:flex sm:space-x-8"
+          >
+            <a
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              href="/dashboard"
+              onClick={[Function]}
+            >
+              Dashboard
+            </a>
+            <a
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              href="/endpoints"
+              onClick={[Function]}
+            >
+              Endpoints
+            </a>
+            <a
+              className="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              href="/endpoints/create"
+              onClick={[Function]}
+            >
+              Create Endpoint
+            </a>
+          </div>
+        </div>
+        <div
+          className="flex items-center"
+        >
+          <button
+            className="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            onClick={[Function]}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div
+    className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
+  >
+    <h1
+      className="mb-6 text-3xl font-bold text-gray-900"
+    >
+      Create New Endpoint
+    </h1>
+    <div
+      className="overflow-hidden bg-white shadow sm:rounded-lg"
+    >
+      <form
+        className="p-6 space-y-6"
+        onSubmit={[Function]}
+      >
+        <div>
+          <label
+            className="block text-sm font-medium text-gray-700"
+            htmlFor="endpointName"
+          >
+            Endpoint Name
+          </label>
+          <input
+            className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            id="endpointName"
+            onChange={[Function]}
+            required={true}
+            type="text"
+            value=""
+          />
+        </div>
+        <div>
+          <label
+            className="block text-sm font-medium text-gray-700"
+          >
+            HTTP Methods
+          </label>
+          <div
+            className="mt-2 space-y-2"
+          >
+            <div
+              className="flex items-center"
+            >
+              <input
+                checked={true}
+                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                id="method-GET"
+                name="GET"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="block ml-2 text-sm text-gray-900"
+                htmlFor="method-GET"
+              >
+                GET
+              </label>
+            </div>
+            <div
+              className="flex items-center"
+            >
+              <input
+                checked={true}
+                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                id="method-POST"
+                name="POST"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="block ml-2 text-sm text-gray-900"
+                htmlFor="method-POST"
+              >
+                POST
+              </label>
+            </div>
+            <div
+              className="flex items-center"
+            >
+              <input
+                checked={true}
+                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                id="method-PUT"
+                name="PUT"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="block ml-2 text-sm text-gray-900"
+                htmlFor="method-PUT"
+              >
+                PUT
+              </label>
+            </div>
+            <div
+              className="flex items-center"
+            >
+              <input
+                checked={true}
+                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                id="method-DELETE"
+                name="DELETE"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="block ml-2 text-sm text-gray-900"
+                htmlFor="method-DELETE"
+              >
+                DELETE
+              </label>
+            </div>
+          </div>
+        </div>
+        <button
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 opacity-50 cursor-not-allowed"
+          disabled={true}
+          type="submit"
+        >
+          Create Endpoint
+        </button>
+      </form>
+    </div>
+    <div
+      className="mt-8"
+    >
+      <a
+        className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        href="/dashboard"
+        onClick={[Function]}
+      >
+        Back to Dashboard
+      </a>
+    </div>
+  </div>
+</div>
+`;

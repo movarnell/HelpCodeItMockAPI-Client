@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard Component matches snapshot 1`] = `
+<div
+  className="min-h-screen bg-gray-100"
+>
+  <div
+    data-testid="navigation"
+  />
+  <div
+    className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
+  >
+    <div
+      className="flex items-center mb-6"
+    >
+      <h1
+        className="text-3xl font-bold text-gray-900"
+      >
+        Dashboard
+      </h1>
+      <div
+        className="mx-auto space-x-4"
+      >
+        <h3
+          className="text-2xl font-semibold text-gray-800 ms-4"
+        >
+          Latest Updates
+        </h3>
+        <ul
+          className="list-disc list-inside"
+        >
+          <li>
+             New and improved UI
+          </li>
+          <li>
+            Added ability to add data using JSON input
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      className="flex flex-col items-center justify-center p-6 space-y-4 border-4 border-gray-200 border-dashed rounded-lg"
+    >
+      <div
+        className="w-full max-w-xs"
+      >
+        <img
+          alt="logo"
+          className="object-contain w-full h-auto"
+          src="test-file-stub"
+        />
+      </div>
+      <h2
+        className="text-2xl font-semibold text-center text-gray-800"
+      >
+        Welcome to Your Dashboard
+      </h2>
+      <div
+        className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4"
+      >
+        <a
+          className="px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          href="/endpoints/create"
+          onClick={[Function]}
+        >
+          Create New Endpoint
+        </a>
+        <a
+          className="px-4 py-2 font-medium text-white transition duration-150 ease-in-out bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+          href="/endpoints"
+          onClick={[Function]}
+        >
+          View Endpoints
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

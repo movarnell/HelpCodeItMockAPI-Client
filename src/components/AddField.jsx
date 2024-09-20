@@ -7,7 +7,7 @@ import { IoArrowBack } from 'react-icons/io5'; // Import the back arrow icon
 function AddField() {
   const { id } = useParams(); // Endpoint ID
   const [fieldName, setFieldName] = useState('');
-  const [dataType, setDataType] = useState('VARCHAR');
+  const [dataType, setDataType] = useState('INT'); // Set a default value
   const [isRequired, setIsRequired] = useState(false);
   const [error, setError] = useState('');
   const [fields, setFields] = useState([]); // Add state for fields

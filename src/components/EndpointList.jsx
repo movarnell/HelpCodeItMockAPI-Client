@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosInstance';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 import { IoArrowBack } from 'react-icons/io5';
 
 function EndpointList() {
   const [endpoints, setEndpoints] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEndpoints = async () => {
@@ -29,17 +30,22 @@ function EndpointList() {
     }
   };
 
+  const handleBackClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
       <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center mb-6">
-          <Link
-            to="/dashboard"
+          <button
+            onClick={handleBackClick}
             className="mr-4 text-indigo-600 transition-colors duration-200 hover:text-indigo-800"
+            data-testid="back-arrow"
           >
             <IoArrowBack className="w-6 h-6" />
-          </Link>
+          </button>
           <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Endpoint List</h1>
         </div>
         <div className="mb-8 overflow-x-auto bg-white shadow sm:rounded-lg">
@@ -60,18 +66,18 @@ function EndpointList() {
                   <td className="px-3 py-4 text-sm text-gray-500 sm:px-6 whitespace-nowrap">{endpoint.http_methods.join(', ')}</td>
                   <td className="px-3 py-4 text-sm font-medium sm:px-6">
                     <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
-                      <Link
-                        to={`/endpoints/${endpoint.endpoint_id}/fields`}
+                      <button
+                        onClick={() => navigate(`/endpoints/${endpoint.endpoint_id}/fields`)}
                         className="px-3 py-2 text-sm font-medium text-center text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >
                         Manage Fields
-                      </Link>
-                      <Link
-                        to={`/api/${endpoint.endpoint_name}`}
+                      </button>
+                      <button
+                        onClick={() => navigate(`/api/${endpoint.endpoint_name}`)}
                         className="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                       >
                         View Data
-                      </Link>
+                      </button>
                       <button
                         onClick={() => deleteEndpoint(endpoint.endpoint_id)}
                         className="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"

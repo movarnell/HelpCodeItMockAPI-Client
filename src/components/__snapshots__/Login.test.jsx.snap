@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component matches snapshot 1`] = `
+<div
+  className="flex items-center justify-center h-screen bg-gray-100 rounded"
+>
+  <div
+    className="w-full max-w-md p-8 space-y-3 bg-white rounded shadow"
+  >
+    <img
+      alt="logo"
+      className="w-1/2 mx-auto"
+      src="test-file-stub"
+    />
+    <h1
+      className="text-2xl font-bold text-center"
+    >
+      Login
+    </h1>
+    <form
+      className="space-y-6"
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          className="block text-sm"
+          htmlFor="username"
+        >
+          Username
+        </label>
+        <input
+          className="w-full px-4 py-2 border rounded-md"
+          id="username"
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <label
+          className="block text-sm"
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          className="w-full px-4 py-2 border rounded-md"
+          id="password"
+          onChange={[Function]}
+          required={true}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600"
+      >
+        Login
+      </button>
+      <p
+        className="text-sm text-center"
+      >
+        Don't have an account?
+         
+        <a
+          className="text-blue-500 hover:underline"
+          href="/register"
+          onClick={[Function]}
+        >
+          Register
+        </a>
+        <br />
+        This app is currently free to use.
+        <br />
+        If you have any issues please let us know using our 
+        <a
+          className="text-blue-500 hover:underline"
+          href="https://www.helpcodeit.com/contact"
+        >
+          contact form!
+        </a>
+      </p>
+    </form>
+  </div>
+</div>
+`;

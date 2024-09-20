@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddData Component matches snapshot 1`] = `
+<div
+  className="p-6"
+>
+  <h1
+    className="mb-4 text-2xl font-bold"
+  >
+    Add Data to 
+    test_endpoint
+  </h1>
+  <div
+    className="mb-4"
+  >
+    <button
+      className="mr-2 px-4 py-2 font-bold text-white rounded-md bg-blue-500"
+      onClick={[Function]}
+    >
+      Form Input
+    </button>
+    <button
+      className="px-4 py-2 font-bold text-white rounded-md bg-gray-400"
+      onClick={[Function]}
+    >
+      JSON Input
+    </button>
+  </div>
+  <form
+    className="space-y-4"
+    onSubmit={[Function]}
+  >
+    <button
+      className="px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600"
+    >
+      Add Data
+    </button>
+  </form>
+  <div
+    className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit"
+  >
+    <a
+      href="/dashboard"
+      onClick={[Function]}
+    >
+       Back to Dashboard
+    </a>
+  </div>
+</div>
+`;

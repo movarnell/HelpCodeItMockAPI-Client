@@ -1,43 +1,72 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { BrowserRouter, useNavigate } from 'react-router-dom';
 import Login from './Login';
+import axiosInstance from '../api/axiosInstance';
+import { act } from 'react-dom/test-utils';
 
-// Mock the axiosInstance
-jest.mock('../api/axiosInstance.js', () => ({
-  post: jest.fn()
+jest.mock('../api/axiosInstance');
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
 }));
 
 describe('Login Component', () => {
-  it('renders login form', () => {
-    render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    );
+  const mockNavigate = jest.fn();
 
+  beforeEach(() => {
+    useNavigate.mockReturnValue(mockNavigate);
+    mockNavigate.mockClear();
+  });
+
+  const renderComponent = async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Login />
+        </BrowserRouter>
+      );
+    });
+  };
+
+  test('renders login form', async () => {
+    await renderComponent();
     expect(screen.getByLabelText(/username/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
   });
 
-  it('handles form submission', async () => {
-    const mockAxios = require('../api/axiosInstance');
-    mockAxios.post.mockResolvedValueOnce({ data: { token: 'fake-token' } });
+  test('handles form submission', async () => {
+    axiosInstance.post.mockResolvedValueOnce({ data: { token: 'fake-token' } });
+    await renderComponent();
 
-    render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    );
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'testuser' } });
+      fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'password123' } });
+      fireEvent.click(screen.getByRole('button', { name: /login/i }));
+    });
 
-    fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'testuser' } });
-    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'password123' } });
-    fireEvent.click(screen.getByRole('button', { name: /login/i }));
+    await waitFor(() => {
+      expect(axiosInstance.post).toHaveBeenCalledWith('/auth/login', {
+        username: 'testuser',
+        password: 'password123'
+      });
+      expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
+    });
+  });
 
-    expect(mockAxios.post).toHaveBeenCalledWith('/auth/login', {
-      username: 'testuser',
-      password: 'password123'
+  test('displays error message on login failure', async () => {
+    axiosInstance.post.mockRejectedValueOnce({ response: { data: { message: 'Invalid credentials' } } });
+    await renderComponent();
+
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'testuser' } });
+      fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'wrongpassword' } });
+      fireEvent.click(screen.getByRole('button', { name: /login/i }));
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Invalid credentials')).toBeInTheDocument();
     });
   });
 });
