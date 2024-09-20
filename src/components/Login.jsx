@@ -33,9 +33,12 @@ function Login() {
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm">Username</label>
+            <label
+            htmlFor="username"
+            className="block text-sm">Username</label>
             <input
               type="text"
+              id="username"
               className="w-full px-4 py-2 border rounded-md"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -43,9 +46,10 @@ function Login() {
             />
           </div>
           <div>
-            <label className="block text-sm">Password</label>
+            <label htmlFor="password" className="block text-sm">Password</label>
             <input
               type="password"
+              id="password"
               className="w-full px-4 py-2 border rounded-md"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
