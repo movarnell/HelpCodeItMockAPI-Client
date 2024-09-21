@@ -2,24 +2,22 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  //baseURL: 'http://localhost:5100', // Adjust if necessary
-  baseURL: 'https://backend.michaelvarnell.com:5100'
+  baseURL: 'https://backend.michaelvarnell.com:5100', // Ensure this matches your backend
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
+// Add a request interceptor to include the token if needed
 axiosInstance.interceptors.request.use(
-    (config) => {
-      const token = localStorage.getItem('token');
-      console.log('Token from localStorage:', token);
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-      } else {
-        console.warn('No token found in localStorage');
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
+  config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-  );
+    return config;
+  },
+  error => Promise.reject(error)
+);
 
 export default axiosInstance;

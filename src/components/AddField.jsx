@@ -143,11 +143,11 @@ function AddField() {
             Back to Dashboard
           </Link>
         </div>
-        // Display existing fields with delete option
-        <div className="mt-6">
+
+        {/* <div className="mt-6">
           <h2 className="text-2xl font-semibold">Existing Fields</h2>
           <ul>
-            {fields.map(field => (
+            {fields.length > 0 && fields.map(field => (
               <li key={field.id} className="flex items-center justify-between mt-2">
                 <span>{field.field_name}</span>
                 <button
@@ -159,7 +159,7 @@ function AddField() {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

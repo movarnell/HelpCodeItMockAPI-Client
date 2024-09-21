@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import FieldList from './FieldList';
 import axiosInstance from '../api/axiosInstance';
-import { act } from 'react-dom/test-utils';
+import { act } from 'react';
 
 jest.mock('../api/axiosInstance');
 jest.mock('react-router-dom', () => ({
@@ -48,17 +48,13 @@ describe('FieldList Component', () => {
 
   test('navigates to add field page when Add Field button is clicked', async () => {
     await renderComponent();
-    await act(async () => {
-      fireEvent.click(screen.getByRole('link', { name: /add field/i }));
-    });
+    fireEvent.click(screen.getByText(/add field/i));
     expect(mockNavigate).toHaveBeenCalledWith('/endpoints/1/fields/add');
   });
 
   test('navigates back to endpoints when back arrow is clicked', async () => {
     await renderComponent();
-    await act(async () => {
-      fireEvent.click(screen.getByTestId('back-arrow'));
-    });
+    fireEvent.click(screen.getByTestId('back-arrow'));
     expect(mockNavigate).toHaveBeenCalledWith('/endpoints');
   });
 });

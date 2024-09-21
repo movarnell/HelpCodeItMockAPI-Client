@@ -56,31 +56,32 @@ function AddData() {
 
       if (inputMode === 'form') {
         // Prepare data to send
-        const dataToSend = { ...formData };
+        dataToSend = { ...formData };
 
         // Convert data types if necessary
         fields.forEach((field) => {
-            const { field_name, data_type } = field;
-            if (dataToSend[field_name]) {
-                switch (data_type) {
-                    case 'INT':
-                        dataToSend[field_name] = parseInt(dataToSend[field_name], 10);
-                        break;
-                    case 'FLOAT':
-                        dataToSend[field_name] = parseFloat(dataToSend[field_name]);
-                        break;
-                    case 'BOOLEAN':
-                        dataToSend[field_name] = dataToSend[field_name] === 'true';
-                        break;
-                    default:
-                        // For other types, keep as is
-                        break;
-                }
+          const { field_name, data_type } = field;
+          if (dataToSend[field_name]) {
+            switch (data_type) {
+              case 'INT':
+                dataToSend[field_name] = parseInt(dataToSend[field_name], 10);
+                break;
+              case 'FLOAT':
+                dataToSend[field_name] = parseFloat(dataToSend[field_name]);
+                break;
+              case 'BOOLEAN':
+                dataToSend[field_name] = dataToSend[field_name] === 'true';
+                break;
+              default:
+                // For other types, keep as is
+                break;
             }
+          }
         });
 
-        await axiosInstance.post(`/api/${endpointName}`, dataToSend);
-        navigate(`/api/${endpointName}`);
+        // {{ Remove the duplicate POST request and navigation }}
+        // await axiosInstance.post(`/api/${endpointName}`, dataToSend);
+        // navigate(`/api/${endpointName}`);
       } else {
         // Parse JSON input
         try {
@@ -91,10 +92,12 @@ function AddData() {
         }
       }
 
-      // Check if dataToSend is an array
+      // Send data based on the input mode
       if (Array.isArray(dataToSend)) {
         // Send multiple objects
-        await Promise.all(dataToSend.map(item => axiosInstance.post(`/api/${endpointName}`, item)));
+        await Promise.all(
+          dataToSend.map((item) => axiosInstance.post(`/api/${endpointName}`, item))
+        );
       } else {
         // Send single object
         await axiosInstance.post(`/api/${endpointName}`, dataToSend);

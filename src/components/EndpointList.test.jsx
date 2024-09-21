@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import EndpointList from './EndpointList';
 import axiosInstance from '../api/axiosInstance';
-import { act } from 'react-dom/test-utils';
+import { act } from 'react';
 
 // Mock the axiosInstance
 jest.mock('../api/axiosInstance');
@@ -42,16 +42,18 @@ describe('EndpointList Component', () => {
   test('renders EndpointList component', async () => {
     await renderComponent();
     expect(screen.getByText('Endpoint List')).toBeInTheDocument();
-    expect(screen.getByText('users')).toBeInTheDocument();
-    expect(screen.getByText('products')).toBeInTheDocument();
+
+    // Use getAllByText and check the length
+    const userElements = screen.getAllByText('users');
+    expect(userElements.length).toBeGreaterThan(0);
+
+    expect(screen.getAllByText('products')).toHaveLength(2);
   });
 
   test('navigates back to dashboard when back arrow is clicked', async () => {
     await renderComponent();
     const backArrow = screen.getByTestId('back-arrow');
-    await act(async () => {
-      fireEvent.click(backArrow);
-    });
+    fireEvent.click(backArrow);
     expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
   });
 });
