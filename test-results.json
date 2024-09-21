@@ -1,0 +1,250 @@
+{
+  "config": {
+    "configFile": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/playwright.config.js",
+    "rootDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/michaelvarnell/Library/Mobile Documents/com~apple~CloudDocs/FrontEnd/HelpCodeItMockAPI-Client/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.47.2",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 5173,
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "AddData.spec.js",
+      "file": "AddData.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "AddData Component",
+          "file": "AddData.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "renders add data form",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "status": "passed",
+                      "duration": 691,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-21T17:15:44.421Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4dcea40a585ac4d4b0f5-8642432d4e9715392ebb",
+              "file": "AddData.spec.js",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "submits form with data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "status": "passed",
+                      "duration": 718,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-21T17:15:45.151Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4dcea40a585ac4d4b0f5-ec99b3092e73b99e3305",
+              "file": "AddData.spec.js",
+              "line": 31,
+              "column": 3
+            },
+            {
+              "title": "displays error when fetching fields fails",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "status": "passed",
+                      "duration": 826,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-21T17:15:45.872Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4dcea40a585ac4d4b0f5-084da3c2e1a7da287e6a",
+              "file": "AddData.spec.js",
+              "line": 47,
+              "column": 3
+            },
+            {
+              "title": "displays error when form submission fails",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "status": "passed",
+                      "duration": 706,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-21T17:15:46.701Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "4dcea40a585ac4d4b0f5-674d0ac57dc1f681025a",
+              "file": "AddData.spec.js",
+              "line": 58,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2024-09-21T17:15:43.764Z",
+    "duration": 3656.7360000000335,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

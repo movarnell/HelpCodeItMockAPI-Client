@@ -39,6 +39,7 @@ function Login() {
             <input
               type="text"
               id="username"
+              name="username"
               className="w-full px-4 py-2 border rounded-md"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -50,6 +51,7 @@ function Login() {
             <input
               type="password"
               id="password"
+              name="password"
               className="w-full px-4 py-2 border rounded-md"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -57,7 +59,7 @@ function Login() {
             />
           </div>
 
-          <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600">
+          <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600" type="submit">
             Login
           </button>
           <p className="text-sm text-center">

@@ -58,6 +58,7 @@ function DataList() {
       </div>
       {error && <p className="text-red-500">{error}</p>}
       <Link
+        data-testid="add-data-link"
         to={`/api/${endpointName}/add`}
         className="px-4 py-2 mb-4 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600"
       >

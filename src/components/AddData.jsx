@@ -135,19 +135,21 @@ function AddData() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold">Add Data to {endpointName}</h1>
+      <h1 className="mb-4 text-2xl font-bold" data-testid="Add Data to {endpointName}">Add Data to {endpointName}</h1>
       {error && <p className="text-red-500">{error}</p>}
 
       <div className="mb-4">
         <button
           className={`mr-2 px-4 py-2 font-bold text-white rounded-md ${inputMode === 'form' ? 'bg-blue-500' : 'bg-gray-400'}`}
           onClick={() => setInputMode('form')}
+          data-testid="Form Input"
         >
           Form Input
         </button>
         <button
           className={`px-4 py-2 font-bold text-white rounded-md ${inputMode === 'json' ? 'bg-blue-500' : 'bg-gray-400'}`}
           onClick={() => setInputMode('json')}
+          data-testid="JSON Input"
         >
           JSON Input
         </button>
@@ -161,6 +163,7 @@ function AddData() {
               <input
                 type="text"
                 name={field.field_name}
+                data-testid={field.field_name}
                 className="w-full px-4 py-2 border rounded-md"
                 value={formData[field.field_name] || ''}
                 onChange={handleChange}
@@ -172,6 +175,7 @@ function AddData() {
           <div>
             <label className="block text-sm">JSON Input (Array or Single Object)</label>
             <textarea
+              data-testid="JSON Input"
               className="w-full px-4 py-2 font-mono text-sm border rounded-md"
               rows="15"
               value={jsonInput}
@@ -180,13 +184,13 @@ function AddData() {
             ></textarea>
           </div>
         )}
-        <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600">
+        <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600" data-testid="Add Data">
           Add Data
         </button>
       </form>
 
       <div className="px-4 py-2 mt-24 mb-4 font-bold text-white bg-green-500 rounded-md hover:bg-green-600 w-fit">
-        <Link to={'/dashboard'}> Back to Dashboard</Link>
+        <Link to={'/dashboard'} data-testid="Back to Dashboard"> Back to Dashboard</Link>
       </div>
     </div>
   );
